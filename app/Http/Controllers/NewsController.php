@@ -29,7 +29,7 @@ class NewsController  extends Controller
 
     public function create()
     {
-        $categories=Categorie::all();
+        $categories=Categorie::pluck('name', 'id');
         return view('admin.AddEditNews' ,compact('categories'));
     }
 
