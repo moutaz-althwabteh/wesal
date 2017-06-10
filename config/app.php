@@ -171,8 +171,8 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
-        Unisharp\Ckeditor\ServiceProvider::class,//https://packagist.org/packages/unisharp/laravel-ckeditor
-        Laracademy\Commands\MakeServiceProvider::class,//https://packagist.org/packages/laracademy/interactive-make
+        Unisharp\Ckeditor\ServiceProvider::class,//https://packagist.org/packages/unisharp/laravel-ckeditor //
+        Laracademy\Commands\MakeServiceProvider::class,//https://packagist.org/packages/laracademy/interactive-make للمساعدة في كتابة الأزاكر _محمد شرا
 
         /*
          * Application Service Providers...

@@ -19,10 +19,14 @@ class CreateNewsTable extends Migration
             $table->string('summary');
             $table->string('tags')->nullable();
             $table->string('details');
+            $table->string('image');
+            $table->integer('categorie_id');
             $table->boolean('active')->default(1);
             $table->boolean('main')->default(1);
-            $table->integer('cat')->default(0);
+
             $table->timestamps();
+
+            $table->foreign('categorie_id')->references('id')->on('categories');
         });
     }
 

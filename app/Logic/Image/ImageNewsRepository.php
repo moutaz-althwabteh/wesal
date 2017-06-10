@@ -2,7 +2,6 @@
 
 namespace App\Logic\Image;
 
-use App\Image;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Config;
@@ -11,40 +10,40 @@ use Intervention\Image\ImageManager;
 
 
 
-class ImageRepository
+class ImageNewsRepository
 {
     public function upload( $form_data )
     {
-
         $rules = array(
-            'file' => 'image|max:3000',
-            'ImageName'=>'required',
-            'albumId'=>'required'
+            'file' => 'image|max:3000'
         );
         $messages=array(
-            'ImageName.required' => 'من فضلك أدخل اسم الصورة !',
-             'albumId.required' => 'من فضلك أدخل اسم الألبوم !'
+            'title.required' => 'من فضلك أدخل اسم الصورة !'
+
         );
 
-       // $validator = Validator::make($form_data, $rules, Image::$messages);
+
+        // $validator = Validator::make($form_data, $rules, Image::$messages);
         $validator = Validator::make($form_data, $rules,$messages);
+
         if ($validator->fails()) {
 
             return Response::json([
                 'error' => true,
-               // 'message' => $validator->messages()->all(),
+                // 'message' => $validator->messages()->all(),
                 'message' => $validator->messages()->first(),
                 'code' => 400
             ], 400);
 
         }
 
-        $photo = $form_data['file'];
+        $photo = $form_data['image'];
+        dd($photo);
         $originalName = $photo->getClientOriginalName();
+
         $extension = $photo->getClientOriginalExtension();
         $originalNameWithoutExt = substr($originalName, 0, strlen($originalName) - strlen($extension) - 1);
-
-        $filename = $this->sanitize($originalNameWithoutExt);
+       $filename = $this->sanitize($originalNameWithoutExt);
         $allowed_filename = $this->createUniqueFilename( $filename, $extension );
 
 
@@ -63,17 +62,20 @@ class ImageRepository
 
         }
 
-        $sessionImage = new Image();
-        $sessionImage->filename      = $allowed_filename;
-        $sessionImage->original_name = $originalName;
-        $sessionImage->albums_Id=$form_data['albumId'];
-        $sessionImage->name=$form_data['ImageName'];
-        $sessionImage->save();
+//        $sessionImage = new Image();
+//
+//        $sessionImage->filename= $allowed_filename;
+//        $sessionImage->original_name = $originalName;
+//
+//        $sessionImage->albums_Id=$form_data['albumId'];
+//        $sessionImage->name=$form_data['ImageName'];
+        //$sessionImage->save();
 
-        return Response::json([
+        return
+            Response::json([
             'error' => false,
             'code'  => 200,
-            'id'=>$sessionImage->id,
+            'id'=>2,
             'filename' => $allowed_filename
         ], 200);
 
@@ -99,9 +101,9 @@ class ImageRepository
      */
     public function original( $photo, $filename )
     {
-        $manager = new ImageManager();
-        $image = $manager->make( $photo )->save(Config::get('images.full_size') . $filename );
 
+        $manager = new ImageManager();
+        $image = $manager->make($photo)->save(Config::get('images.full_size') . $filename );
         return $image;
     }
 
@@ -113,7 +115,7 @@ class ImageRepository
         $manager = new ImageManager();             // عرض, ارتقاع
         $image = $manager->make( $photo )->resize(200, 200, function ($constraint) {
             $constraint->aspectRatio();
-            })
+        })
             ->save( Config::get('images.icon_size')  . $filename );
 
         return $image;
@@ -199,4 +201,5 @@ class ImageRepository
                 strtolower($clean) :
             $clean;
     }
+
 }

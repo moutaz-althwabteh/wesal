@@ -5,6 +5,7 @@
     <title>{{getWepSiteName()}}
         @yield('title')
     </title>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="" name="description"/>
@@ -18,7 +19,7 @@
 {!!Html::style('assets/global/plugins/font-awesome/css/font-awesome.min.css') !!}
 {!!Html::style('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') !!}
 {!!Html::style('assets/global/plugins/bootstrap/css/bootstrap-rtl.min.css') !!}
-{!!Html::style('assets/global/plugins/uniform/css/uniform.default.css') !!}
+
 {!!Html::style('assets/global/plugins/bootstrap-switch/css/bootstrap-switch-rtl.min.css') !!}
     {!!Html::style('assets/global/plugins/jquery-notific8/jquery.notific8.min.css') !!}
 
@@ -26,6 +27,7 @@
 <!-- END GLOBAL MANDATORY STYLES -->
 
 {!!Html::style('assets/global/css/components-rtl.min.css') !!}
+
 {!!Html::style('assets/global/css/plugins-rtl.min.css') !!}
 <!-- BEGIN THEME LAYOUT STYLES -->
     {!!Html::style('assets/layouts/layout/css/layout-rtl.min.css') !!}
@@ -608,7 +610,7 @@
 {!!Html::script('assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') !!}
 {!!Html::script('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') !!}
 {!!Html::script('assets/global/plugins/jquery.blockui.min.js') !!}
-{!!Html::script('assets/global/plugins/uniform/jquery.uniform.min.js') !!}
+
 {!!Html::script('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') !!}
 
 <!-- END CORE PLUGINS -->

@@ -50,3 +50,5 @@ Route::post('user/SendMail','RegsterUserController@postSendMail');
 
 Route::get('admin/setting','SettingController@index');
 Route::post('admin/setting/update','SettingController@update');
+
+Route::resource('admin/myNews','NewsController');

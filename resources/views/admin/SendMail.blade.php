@@ -55,9 +55,10 @@
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
     <script src="/assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js" type="text/javascript"></script>
+    <script src="/assets/pages/scripts/components-bootstrap-tagsinput.min.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/typeahead/handlebars.min.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/typeahead/typeahead.bundle.min.js" type="text/javascript"></script>
-    <script src="/assets/pages/scripts/components-bootstrap-tagsinput.min.js" type="text/javascript"></script>
+
     <script>
        // $('textarea').ckeditor();
          $('.textarea').ckeditor(); // if class is prefered.

@@ -73,6 +73,7 @@ class SettingController extends Controller
     {
         $setting=Setting::all()->first();
         $request['maintenance'] = isset($request['maintenance']) ? 1 : 0;
+
         $setting->fill($request->all())->save();
         session()->flash('status', 's');
         session()->flash('msg', 'تم التعديل بنجاح!');
