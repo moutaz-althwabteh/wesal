@@ -183,7 +183,7 @@
                                 <li>
                                     <a href="#">
                                                 <span class="photo">
-                                                    <img src="../assets/layouts/layout3/img/avatar2.jpg"
+                                                    <img src="assets/layouts/layout3/img/avatar2.jpg"
                                                          class="img-circle" alt=""> </span>
                                         <span class="subject">
                                                     <span class="from"> Lisa Wong </span>
@@ -195,7 +195,7 @@
                                 <li>
                                     <a href="#">
                                                 <span class="photo">
-                                                    <img src="../assets/layouts/layout3/img/avatar3.jpg"
+                                                    <img src="assets/layouts/layout3/img/avatar3.jpg"
                                                          class="img-circle" alt=""> </span>
                                         <span class="subject">
                                                     <span class="from"> Richard Doe </span>
@@ -207,7 +207,7 @@
                                 <li>
                                     <a href="#">
                                                 <span class="photo">
-                                                    <img src="../assets/layouts/layout3/img/avatar1.jpg"
+                                                    <img src="assets/layouts/layout3/img/avatar1.jpg"
                                                          class="img-circle" alt=""> </span>
                                         <span class="subject">
                                                     <span class="from"> Bob Nilson </span>
@@ -219,7 +219,7 @@
                                 <li>
                                     <a href="#">
                                                 <span class="photo">
-                                                    <img src="../assets/layouts/layout3/img/avatar2.jpg"
+                                                    <img src="assets/layouts/layout3/img/avatar2.jpg"
                                                          class="img-circle" alt=""> </span>
                                         <span class="subject">
                                                     <span class="from"> Lisa Wong </span>

@@ -30,18 +30,19 @@
 
                 <div class="form-body">
 
-                    @if(isset($setting))
-                        {!! Form::model($setting, [
+                    @if(isset($myNews))
+                        {!! Form::model($myNews, [
+                                   'enctype'=>'multipart/form-data',
                                    'class'=>'form-horizontal',
-                                  'method' => 'post',
-                                  'url' => 'admin/setting/update'
+                                  'method' => 'PATCH',
+                                   'route' => ['myNews.update', $myNews->id]
                               ])
                               !!}
 
                     @else
                         {!! Form::open([ 'class'=>'form-horizontal','url' => 'admin/myNews','enctype'=>'multipart/form-data']) !!}
                     @endif
-                        <input type="hidden" name="MAX_FILE_SIZE" value="20971520">
+
                     <div class="form-group">
                         <label class="col-md-3 control-label">العنوان الرئيسي عربي</label>
                         <div class="col-md-9">
@@ -68,22 +69,21 @@
                         <label class="col-md-3 control-label">التصنيف</label>
                         <div class="col-md-9">
 
-                            <select name="categorie_id" class="form-control">
-                                {{$categories[1]->id}}
-                                @foreach($categories as $categorie)
-                                    {{$categorie->name}}
-                                    <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+                       {!! Form::select('categorie_id', $categories, null, ['class' => 'form-control']) !!}
 
-                                @endforeach
-                            </select>
 
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">اضافة صورة</label>
                         <div class="col-md-9">
-                            <div class="fileinput fileinput-new" data-provides="fileinput">
-                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                            <div class="fileinput fileinput-exists" data-provides="fileinput">
+                                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+                                    @if(isset($myNews))
+                                        <img src="/myAdmin/Images/full_size/{{$myNews->image}}">
+                                        @endif
+                                </div>
+
                                 <div>
                                     <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="image"></span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
@@ -128,8 +128,13 @@
                             <div class="col-md-offset-3 col-md-9">
 
                                 <p>
-                                    <button type="submit" class="btn blue">إضافة</button>
-                                    {!! link_to('foo/bar', $title = 'رجوع', $attributes = ['class'=>'btn default  col-offset-3'], $secure = null) !!}
+                                    @if(isset($myNews))
+                                        <button type="submit" class="btn green">حفظ</button>
+                                        @else
+                                        <button type="submit" class="btn blue">إضافة</button>
+                                        @endif
+
+                                    {!! link_to('/admin/myNews', $title = 'رجوع', $attributes = ['class'=>'btn default  col-offset-3'], $secure = null) !!}
 
                                 </p>
 
@@ -158,5 +163,24 @@
     <script>
         // $('textarea').ckeditor();
         $('.textarea').ckeditor(); // if class is prefered.
+    </script>
+    <script>
+        $(document).on('ready', function() {
+            $(".fileinput").fileinput({
+                initialPreview: [
+                    'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
+                    'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg'
+                ],
+                initialPreviewAsData: true,
+                initialPreviewConfig: [
+                    {caption: "Moon.jpg", size: 930321, width: "120px", key: 1},
+                    {caption: "Earth.jpg", size: 1218822, width: "120px", key: 2}
+                ],
+                deleteUrl: "/site/file-delete",
+                overwriteInitial: false,
+                maxFileSize: 100,
+                initialCaption: "The Moon and the Earth"
+            });
+        });
     </script>
 @endsection

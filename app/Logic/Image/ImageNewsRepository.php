@@ -14,6 +14,7 @@ class ImageNewsRepository
 {
     public function upload( $form_data )
     {
+
         $rules = array(
             'file' => 'image|max:3000'
         );
@@ -38,7 +39,7 @@ class ImageNewsRepository
         }
 
         $photo = $form_data['image'];
-        dd($photo);
+
         $originalName = $photo->getClientOriginalName();
 
         $extension = $photo->getClientOriginalExtension();
@@ -51,8 +52,9 @@ class ImageNewsRepository
 
         $uploadSuccess2 = $this->icon( $photo, $allowed_filename );
         $uploadSuccess3 = $this->small( $photo, $allowed_filename );
+        $uploadSuccess4 = $this->icon_small( $photo, $allowed_filename );
 
-        if( !$uploadSuccess1 || !$uploadSuccess2 || !$uploadSuccess3 ) {
+        if( !$uploadSuccess1 || !$uploadSuccess2 || !$uploadSuccess3 || !$uploadSuccess4) {
 
             return Response::json([
                 'error' => true,
@@ -133,6 +135,16 @@ class ImageNewsRepository
 
         return $image;
     }
+    public function icon_small( $photo, $filename )
+    {
+        $manager = new ImageManager();
+        $image = $manager->make( $photo )->resize(50, 50, function ($constraint) {
+            $constraint->aspectRatio();
+        })
+            ->save( Config::get('images.icon_small_size')  . $filename );
+
+        return $image;
+    }
 
     /**
      * Delete Image From Session folder, based on server created filename
@@ -143,10 +155,10 @@ class ImageNewsRepository
         $full_size_dir = Config::get('images.full_size');
         $icon_size_dir = Config::get('images.icon_size');
         $small_size_dir = Config::get('images.small_size');
-        $sessionImage = Image::where('id', '=', $filename)->first();
+        $icon_small_size_dir = Config::get('images.icon_small_size');
 
 
-        if(empty($sessionImage))
+        if(empty($full_size_dir))
         {
             return Response::json([
                 'error' => true,
@@ -155,9 +167,10 @@ class ImageNewsRepository
 
         }
 
-        $full_path1 = $full_size_dir . $sessionImage->filename;
-        $full_path2 = $icon_size_dir . $sessionImage->filename;
-        $full_path3 = $small_size_dir . $sessionImage->filename;
+        $full_path1 = $full_size_dir . $filename;
+        $full_path2 = $icon_size_dir . $filename;
+        $full_path3 = $small_size_dir .$filename;
+        $full_path4 = $icon_small_size_dir .$filename;
 
         if ( File::exists( $full_path1 ) )
         {
@@ -173,11 +186,15 @@ class ImageNewsRepository
         {
             File::delete( $full_path3 );
         }
-
-        if( !empty($sessionImage))
+        if ( File::exists( $full_path4 ) )
         {
-            $sessionImage->delete();
+            File::delete( $full_path4 );
         }
+
+//        if( !empty($sessionImage))
+//        {
+//            $sessionImage->delete();
+//        }
 
         return Response::json([
             'error' => false,
