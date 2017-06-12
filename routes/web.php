@@ -53,3 +53,11 @@ Route::post('admin/setting/update','SettingController@update');
 Route::get('admin/news/data','NewsController@anydata');
 Route::get('admin/myNews/{new}/delete','NewsController@destroy');
 Route::resource('admin/myNews','NewsController');
+
+Route::get('admin/staticPage/data','StaticPageController@anydata');
+Route::get('admin/staticPage/{staticPage}/delete','StaticPageController@destroy');
+Route::resource('admin/staticPage','StaticPageController');
+
+Route::get('admin/code/data','CodeController@anydata');
+Route::get('admin/code/{id}/delete','CodeController@destroy');
+Route::resource('admin/code','CodeController');

@@ -702,4 +702,14 @@
     });*/
 
 </script>
+<style>
+    .dataTables_wrapper .dataTables_processing{
+        position:absolute;
+        top:50%;
+
+        height:40px;
+
+        font-size:1.2em;
+        background-color:white}
+</style>
 </html>

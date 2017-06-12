@@ -20,17 +20,16 @@
 
                 <div class="form-body">
 
-                    @if(isset($myNews))
-                        {!! Form::model($myNews, [
-                                   'enctype'=>'multipart/form-data',
+                    @if(isset($staticPage))
+                        {!! Form::model($staticPage, [
                                    'class'=>'form-horizontal',
                                   'method' => 'PATCH',
-                                   'route' => ['myNews.update', $myNews->id]
+                                   'route' => ['staticPage.update', $staticPage->id]
                               ])
                               !!}
 
                     @else
-                        {!! Form::open([ 'class'=>'form-horizontal','url' => 'admin/myNews','enctype'=>'multipart/form-data']) !!}
+                        {!! Form::open([ 'class'=>'form-horizontal','url' => 'admin/staticPage']) !!}
                     @endif
 
                     <div class="form-group">
@@ -49,7 +48,7 @@
                             </div>
                         </div>
 
-                    <div class="col-md-offset-4 col-md-4">
+                    <div class="col-md-offset-3 col-md-9">
                         <div class="form-group">
 
                             <div class="checkbox-list">
@@ -62,7 +61,7 @@
                              </div>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
+
                     <div class="form-group">
                         <label class="col-md-3 control-label">التفاصيل عربي</label>
                         <div class="col-md-9">
@@ -84,13 +83,13 @@
                             <div class="col-md-offset-3 col-md-9">
 
                                 <p>
-                                    @if(isset($myNews))
+                                    @if(isset($staticPage))
                                         <button type="submit" class="btn green">حفظ</button>
                                     @else
                                         <button type="submit" class="btn blue">إضافة</button>
                                     @endif
 
-                                    {!! link_to('/admin/myNews', $title = 'رجوع', $attributes = ['class'=>'btn default  col-offset-3'], $secure = null) !!}
+                                    {!! link_to('/admin/staticPage', $title = 'رجوع', $attributes = ['class'=>'btn default  col-offset-3'], $secure = null) !!}
 
                                 </p>
 
