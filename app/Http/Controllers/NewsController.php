@@ -23,6 +23,7 @@ class NewsController  extends Controller
 
     public function index()
     {
+
           return view('admin.News');
     }
 
@@ -31,6 +32,7 @@ class NewsController  extends Controller
     {
         $categories=Categorie::pluck('name', 'id');
         return view('admin.AddEditNews' ,compact('categories'));
+
     }
 
 
