@@ -11,7 +11,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="body">
-
+                    {{--@include(layoutTable() , ['title' => adminTrans('categorie' , 'Category') , 'model' => 'categorie' , 'table' => $dataTable->table() ])--}}
                     {!! $dataTable->table() !!}
                 </div>
             </div>

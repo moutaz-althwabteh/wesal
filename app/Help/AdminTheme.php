@@ -8,3 +8,10 @@ function layoutExtend(){
 function layoutTable(){
     return layoutPath("layout.table");
 }
+function layoutBreadcrumb(){
+//    return layoutPath("layout.breadcrumb");
+}
+
+function layoutHeader(){
+    return layoutPath("layout.header");
+}
