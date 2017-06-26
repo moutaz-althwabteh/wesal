@@ -66,6 +66,7 @@ return [
 
     'timezone' => 'UTC',
 
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -77,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -90,7 +91,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -124,6 +125,12 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+
+
+    /*
+     * THEME
+     */
+    'THEME'=>'default',
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -173,7 +180,8 @@ return [
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,//https://packagist.org/packages/unisharp/laravel-ckeditor //
         Laracademy\Commands\MakeServiceProvider::class,//https://packagist.org/packages/laracademy/interactive-make للمساعدة في كتابة الأزاكر _محمد شرا
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -238,7 +246,8 @@ return [
         'Activation' => Cartalyst\Sentinel\Laravel\Facades\Activation::class,
         'Reminder'   => Cartalyst\Sentinel\Laravel\Facades\Reminder::class,
         'Sentinel'   => Cartalyst\Sentinel\Laravel\Facades\Sentinel::class,
-
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
 
     ],
 

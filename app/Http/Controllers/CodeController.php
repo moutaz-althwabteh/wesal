@@ -17,7 +17,8 @@ class CodeController extends Controller
      */
     public function index()
     {
-        return view('admin.Code');
+        $mainCode=MainCode::pluck('name_ar', 'id');
+        return view('admin.Code',compact('mainCode'));
     }
 
     public function create()

@@ -17,12 +17,13 @@ class LoginController extends Controller
     }
     public function  postLogin(Request $request)
     {
+
         try {
             $remmper=false;
             if($request->remmber_me)
                 $remmper=true;
             if (Sentinel::authenticate($request->all(),$remmper))
-                return Sentinel::check();
+                return redirect('/');
             else
                 return redirect()->back()->with(['error' => 'خطأ في كلمة المرور أو اسم المستخدم']);
         }catch (\Cartalyst\Sentinel\Checkpoints\NotActivatedException $e){
@@ -36,6 +37,6 @@ class LoginController extends Controller
 
     public function  postLogout(Request $request){
         Sentinel::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 }

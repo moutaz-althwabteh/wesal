@@ -31,6 +31,7 @@ private $subject;
     }
     public function store(Request $request)
     {
+        dd($request->all());
         $user=User::where('email',$request->email)->first();
         if(!isset($user)){
 

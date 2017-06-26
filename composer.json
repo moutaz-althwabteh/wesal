@@ -10,11 +10,14 @@
         "intervention/image": "^2.3",
         "laracademy/interactive-make": "^1.1",
         "laravel/framework": "5.4.*",
+        "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4",
+        "mcamara/laravel-localization": "^1.2",
         "nesbot/carbon": "^1.22",
+        "nexmo/client": "^0.4.0",
         "unisharp/laravel-ckeditor": "^4.6",
-        "yajra/laravel-datatables-oracle": "^7.3"
+        "yajra/laravel-datatables-oracle": "~6.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -29,7 +32,9 @@
             "App\\": "app/"
         },
         "files":[
-            "App/Help/Helper.php"
+            "App/Help/Helper.php",
+            "App/Help/Lang.php",
+            "App/Help/AdminTheme.php"
         ]
     },
     "autoload-dev": {

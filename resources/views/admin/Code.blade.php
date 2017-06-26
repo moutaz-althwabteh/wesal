@@ -31,7 +31,17 @@
                 </tr>
                 </thead>
                 <tbody>
-
+                <tfoot>
+                <tr>
+                    <th width="20px">#</th>
+                    <th>اسم الكود</th>
+                    <th>تصنيف الكود</th>
+                    <th>فعال</th>
+                    <th>تاريخ الاضافة</th>
+                    <th>وصف الكود</th>
+                    <th>التحكم</th>
+                </tr>
+                </tfoot>
 
                 </tbody>
             </table>
@@ -61,7 +71,7 @@
         } );
 
         var table = $('#data').DataTable({
-            "sort":false,
+            "sort":true,
             processing: true,
             serverSide: true,
             ajax: '{{ url('admin/code/data') }}',

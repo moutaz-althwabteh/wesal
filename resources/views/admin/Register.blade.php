@@ -10,19 +10,20 @@
         </div>
     </div>
     <div class="col-md-12">
-
+{{--<input id="tst" type="text" class="form-control">--}}
         <div class="box-body">
             <table id="data"  class="table table-bordered table-hover table-striped">
                 <thead>
+
                 <tr>
-                    <th width="20px" >البحث</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th width="20px">#</th>
+                    <th>اسم المستخدم</th>
+                    <th>الاسم كاملاً</th>
+                    <th>الايميل</th>
+                    <th>تصنيف المستخدم</th>
+                    <th>صلاحيات</th>
+                    <th>تعديل</th>
+                    <th>حذف</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -55,16 +56,17 @@
         var lastIdx = null;
 
         $('#data thead th').each( function () {
-            if($(this).index() ==1) {
+//            $(this).index() ==1
+            if(true) {
                 var classname = 'form-control';
                 var title = $(this).html();
-                $(this).html('<input type="text" class="' + classname + '" data-value="' + $(this).index() + '" placeholder="ابحث ب'+title+'" />');
+                $(this).html('<input type="text" id="tst" class="' + classname + '" data-value="' + $(this).index() + '" placeholder="ابحث ب'+title+'" />');
 
             }
         } );
 
         var table = $('#data').DataTable({
-            "sort":false,
+
             processing: true,
             serverSide: true,
             ajax: '{{ url('register/data') }}',
@@ -120,48 +122,33 @@
             "dom": '<"pull-left text-left" T><"pullright" i><"clearfix"><"pull-right text-right col-lg-6" f > <"pull-left text-left" l><"clearfix">rt<"pull-right text-right col-lg-6" pi > <"pull-left text-left" l><"clearfix"> '
             ,initComplete: function ()
             {
-                var r = $('#data tfoot tr');
-                r.find('th').each(function(){
-                    $(this).css('padding', 8);
-                });
-                $('#data thead').append(r);
-                $('#search_0').css('text-align', 'left');
+
             }
 
         });
 
 
-        table.columns().eq(0).each(function(colIdx) {
-            $('input', table.column(colIdx).header()).on('keyup change', function() {
 
-                table
-                    .column(colIdx)
-                    .search(this.value)
-                    .draw();
-
-            });
-
-
-
-
-        });
 
 
 
         table.columns().eq(0).each(function(colIdx) {
-            $('select', table.column(colIdx).header()).on('change', function() {
+            $('input', table.column(colIdx).header()).on('keyup', function() {
                 table
                     .column(colIdx)
                     .search(this.value)
                     .draw();
-            });
+//                alert($('input', table.column(colIdx).header()).val());
+                $('input', table.column(colIdx).header()).focus();
 
-            $('select', table.column(colIdx).header()).on('click', function(e) {
+             });
+
+            $('input', table.column(colIdx).header()).on('click', function(e) {
 
                 e.stopPropagation();
             });
         });
-        <!--
+
             $('#data tbody')
                 .on( 'mouseover', 'td', function () {
                     var colIdx = table.cell(this).index().column;
@@ -174,7 +161,7 @@
                 .on( 'mouseleave', function () {
                     $( table.cells().nodes() ).removeClass( 'highlight' );
                 } );
-        -->
+
     </script>
     <style>
         .dataTables_wrapper .dataTables_processing{
